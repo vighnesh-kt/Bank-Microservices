@@ -1,11 +1,9 @@
 package com.v.accounts.entity;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,16 +16,21 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer extends BaseEntity {
+public class Accounts extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long customerId;
+    @Column(name="customer_id")
+    private Long customerId;
 
-	private String name;
+    @Column(name="account_number")
+    @Id
+    private Long accountNumber;
 
-	private String email;
+    @Column(name="account_type")
+    private String accountType;
 
-	private String mobileNumber;
+    @Column(name="branch_address")
+    private String branchAddress;
+
+
 
 }
