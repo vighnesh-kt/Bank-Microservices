@@ -12,7 +12,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity
 @MappedSuperclass
 public class BaseEntity {
 
@@ -22,8 +21,10 @@ public class BaseEntity {
 	@Column(updatable = false)
 	private String createdBy;
 
+	@Column(insertable = false)
 	private LocalDateTime updatedAt;
 
+	@Column(insertable = false)
 	private String updatedBy;
 
 }
