@@ -12,10 +12,9 @@ import lombok.Data;
 public class ErrorDto {
 
 	private String apiPath;
-	
 	private HttpStatus errorCode;
-	
+
 	private String ErrorMessage;
-	
+
 	private LocalDateTime errorTime;
 }
