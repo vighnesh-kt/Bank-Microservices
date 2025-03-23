@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 
+import lombok.Getter;
+
+@Getter
 public class ErrorResponse {
 
 	private final String apiPath;
