@@ -21,6 +21,21 @@ public interface IAccountsService {
 	 * @return
 	 */
 	ResponseStructure<?> fetch(String mobileNumber);
+	
+	
+	/**
+	 * 
+	 * @param customer
+	 * @return
+	 */
+	ResponseStructure<?> update (CustomerDto customer);
+	
+	/**
+	 * 
+	 * @param mobileNumber
+	 * @return
+	 */
+	ResponseStructure<?> delete (CustomerDto customerDto);
 
 
 }
