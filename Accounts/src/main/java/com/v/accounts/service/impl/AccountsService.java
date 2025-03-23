@@ -1,18 +1,21 @@
 package com.v.accounts.service.impl;
 
 
-import java.util.Optional;
+
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
+import com.v.accounts.dto.AccountsDto;
 import com.v.accounts.dto.CustomerDto;
 import com.v.accounts.entity.Accounts;
 import com.v.accounts.entity.Customer;
 import com.v.accounts.enums.AccountsConstants;
 import com.v.accounts.exceptions.CustomerAlreadyExistsException;
+import com.v.accounts.exceptions.ResourceNotFoundException;
 import com.v.accounts.mapper.AccountsMapperStruct;
 import com.v.accounts.mapper.CustomerMapperStruct;
 import com.v.accounts.repository.AccountsRepository;
@@ -38,17 +41,22 @@ public class AccountsService implements IAccountsService{
 	private AccountsMapperStruct accountMapper;
 
 	@Override
-	public ResponseEntity<?> create(CustomerDto customerDto) {
+	public ResponseStructure<String> create(CustomerDto customerDto) {
 		// TODO Auto-generated method stub
-		if (customerRepository.findByMobileNumber(customerDto.getMobileNumber()).isPresent()) {
-		    throw new CustomerAlreadyExistsException("Customer with this mobile number already exists");
-		}
-		ResponseStructure<String> rs= new ResponseStructure<>();
+		customerRepository.findByMobileNumber(customerDto.getMobileNumber()).ifPresent(customer->{
+			throw new CustomerAlreadyExistsException("Customer Already Exists");
+		});
 		Customer customer=customerMapper.toEntity(customerDto);
+		customer.setCreatedAt(LocalDateTime.now());
+		customer.setCreatedBy("Annanimus");
+		customerRepository.save(customer);
 		accountRepository.save(createNewAccount(customer));
-	return null;
 		
-		
+		return ResponseStructure.<String>builder()
+                .data(customer.getEmail()) 
+                .message(AccountsConstants.MESSAGE_201) 
+                .statusCode(HttpStatus.CREATED.value()) 
+                .build();
 	}
 	
 	  private Accounts createNewAccount(Customer customer) {
@@ -59,7 +67,25 @@ public class AccountsService implements IAccountsService{
 	        newAccount.setAccountNumber(randomAccNumber);
 	        newAccount.setAccountType(AccountsConstants.SAVINGS);
 	        newAccount.setBranchAddress(AccountsConstants.ADDRESS);
+	        newAccount.setCreatedBy("Annanimus");
+	        newAccount.setCreatedAt(LocalDateTime.now());
 	        return newAccount;
 	    }
+
+	@Override
+	public ResponseStructure<?> fetch(String mobileNumber) {
+		// TODO Auto-generated method stub
+
+		Customer customer = customerRepository.findByMobileNumber(mobileNumber).orElseThrow(()->new ResourceNotFoundException("Customer", "mobileNumber", mobileNumber));
+		Accounts account = accountRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(()->new ResourceNotFoundException("Account", "customerId", customer.getCustomerId().toString()));
+		
+		CustomerDto customerDto=customerMapper.toDto(customer);
+		customerDto.setAccounts(accountMapper.toDto(account));
+		return ResponseStructure.<CustomerDto>builder()
+				 .data(customerDto) 
+	                .message("Details Fetched") 
+	                .statusCode(HttpStatus.OK.value()) 
+	                .build();
+	}
 
 }

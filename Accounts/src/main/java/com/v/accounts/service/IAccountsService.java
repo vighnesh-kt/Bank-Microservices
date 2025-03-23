@@ -1,8 +1,8 @@
 package com.v.accounts.service;
 
-import org.springframework.http.ResponseEntity;
 
 import com.v.accounts.dto.CustomerDto;
+import com.v.accounts.responsestructure.ResponseStructure;
 
 public interface IAccountsService {
 	
@@ -12,7 +12,15 @@ public interface IAccountsService {
 	 * @param customer
 	 * @return
 	 */
-	ResponseEntity<?> create(CustomerDto customer);
+	ResponseStructure<?> create(CustomerDto customer);
+	
+	
+	/**
+	 * 
+	 * @param mobileNumber
+	 * @return
+	 */
+	ResponseStructure<?> fetch(String mobileNumber);
 
 
 }

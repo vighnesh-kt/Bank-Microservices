@@ -1,32 +1,21 @@
 package com.v.accounts.responsestructure;
 
-
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class ResponseStructure<T> {
-	
-	private T data;
-	
-	private String message;
-	
 
-	private int statusCode; 
-	
-	public ResponseStructure<T> successResponse(T data,String message,int statusCode){
-		this.data=data;
-		this.message=message;
-		this.statusCode=statusCode;
-		return this;
-	}
-	
-	public ResponseStructure<T> errorResponse(String message,int statusCode){
-		this.message=message;
-		this.statusCode=statusCode;
-		this.data=null;
-		return this;
-	}
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+@AllArgsConstructor // Required for @Builder with final fields
+public class ResponseStructure<T> {
+
+    private final T data;
+    private final String message;
+    private final int statusCode;
 
 }
