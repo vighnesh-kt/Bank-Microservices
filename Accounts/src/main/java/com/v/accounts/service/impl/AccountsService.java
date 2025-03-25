@@ -47,8 +47,8 @@ public class AccountsService implements IAccountsService {
 			throw new CustomerAlreadyExistsException("Customer Already Exists");
 		});
 		Customer customer = customerMapper.toEntity(customerDto);
-		customer.setCreatedAt(LocalDateTime.now());
-		customer.setCreatedBy("Annanimus");
+//		customer.setCreatedAt(LocalDateTime.now());
+//		customer.setCreatedBy("Annanimus");
 		customerRepository.save(customer);
 		accountRepository.save(createNewAccount(customer));
 
@@ -70,8 +70,6 @@ public class AccountsService implements IAccountsService {
 		newAccount.setAccountNumber(randomAccNumber);
 		newAccount.setAccountType(AccountsConstants.SAVINGS);
 		newAccount.setBranchAddress(AccountsConstants.ADDRESS);
-		newAccount.setCreatedBy("Annanimus");
-		newAccount.setCreatedAt(LocalDateTime.now());
 		return newAccount;
 	}
 
