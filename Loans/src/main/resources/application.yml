@@ -1,27 +1,16 @@
 server:
-  port: 8080
-
+  port: 8090
 spring:
-  application:
-    name: Loans
-
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     username: sa
     password: ''
-
-  # Enable H2 console to access the in-memory database from the browser
   h2:
     console:
       enabled: true
-
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-    
-    # Automatically update the schema based on entity classes
     hibernate:
       ddl-auto: update
-    
-    # Show all SQL queries in the console
     show-sql: true

@@ -14,7 +14,7 @@ public class AccountsDto {
 
 	    private Long customerId;
 
-	    @Pattern(regexp = "(^$|[0-9]{10})",message = "Mobile no must be 10 digit")
+	    @Pattern(regexp = "(^[0-9]{10}$)",message = "Mobile no must be 10 digit")
 	    @NotEmpty(message = "accountNumber cannot be null") 
 	    @Schema(
 	            description = "Account Number of Bank account", example = "3454433243"
@@ -24,7 +24,7 @@ public class AccountsDto {
 
 	    @NotEmpty(message = "AccountType can not be a null or empty")
 	    @Schema(
-	            description = "Account type of Eazy Bank account", example = "Savings"
+	            description = "Account type of Bank account", example = "Savings"
 	    )
 	    private String accountType;
 

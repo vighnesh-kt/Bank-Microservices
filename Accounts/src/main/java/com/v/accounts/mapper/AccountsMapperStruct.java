@@ -4,10 +4,8 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-
 import com.v.accounts.dto.AccountsDto;
 import com.v.accounts.entity.Accounts;
-
 
 @Mapper(componentModel = "spring")
 public interface AccountsMapperStruct {
