@@ -30,7 +30,7 @@ import lombok.AllArgsConstructor;
  */
 @Service
 @AllArgsConstructor
-public class AccountsService implements IAccountsService {
+public class AccountsServiceImpl implements IAccountsService {
 
 	private AccountsRepository accountRepository;
 

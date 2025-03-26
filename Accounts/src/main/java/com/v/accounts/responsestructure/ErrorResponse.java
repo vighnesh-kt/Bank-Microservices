@@ -4,19 +4,32 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 
 @Getter
 public class ErrorResponse {
 
-	private final String apiPath;
+	 @Schema(
+	            description = "API path invoked by client"
+	    )
+	    private final  String apiPath;
 
-	private final HttpStatus errorCode;
+	    @Schema(
+	            description = "Error code representing the error happened"
+	    )
+	    private final HttpStatus errorCode;
 
-	private final String errorMessage;
+	    @Schema(
+	            description = "Error message representing the error happened"
+	    )
+	    private final String errorMessage;
 
-	private final LocalDateTime errorTime;
-
+	    @Schema(
+	            description = "Time representing when the error happened"
+	    )
+	    private final LocalDateTime errorTime;
+	    
 	public static class ErrorDtoBuilder {
 
 		String apiPath;
