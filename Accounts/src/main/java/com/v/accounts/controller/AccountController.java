@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@RequestMapping(path = "accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 @Validated
 @Tag(
@@ -152,8 +152,8 @@ public class AccountController {
 	    }
 	    )
 	@DeleteMapping("delete")
-	public ResponseEntity<?> deleteAccountDetails(@Valid @RequestBody CustomerDto customerDto) {
-		ResponseStructure<?> delete = accountsService.delete(customerDto);
+	public ResponseEntity<?> deleteAccountDetails(@Valid String mobileNumber) {
+		ResponseStructure<?> delete = accountsService.delete(mobileNumber);
 		return ResponseEntity.status(delete.getStatusCode()).body(delete);
 	}
 

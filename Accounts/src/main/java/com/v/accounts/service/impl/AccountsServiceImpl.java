@@ -83,7 +83,7 @@ public class AccountsServiceImpl implements IAccountsService {
 				() -> new ResourceNotFoundException("Account", "customerId", customer.getCustomerId().toString()));
 
 		CustomerDto customerDto = customerMapper.toDto(customer);
-		customerDto.setAccounts(accountMapper.toDto(account));
+		customerDto.setAccountsDto(accountMapper.toDto(account));
 		return ResponseStructure.<CustomerDto>builder().data(customerDto).message("Details Fetched")
 				.statusCode(HttpStatus.OK.value()).build();
 	}
@@ -93,7 +93,7 @@ public class AccountsServiceImpl implements IAccountsService {
 	public ResponseStructure<?> update(CustomerDto customerDto) {
 		// TODO Auto-generated method stub
 		boolean isUpdated = false;
-		AccountsDto accountsDto = customerDto.getAccounts();
+		AccountsDto accountsDto = customerDto.getAccountsDto();
 		if (accountsDto.getAccountNumber() != null) {
 			Accounts accounts = accountRepository.findById(accountsDto.getAccountNumber())
 					.orElseThrow(() -> new ResourceNotFoundException("Account", "accountNumber",
@@ -120,12 +120,12 @@ public class AccountsServiceImpl implements IAccountsService {
 
 	@Override
 	@Transactional
-	public ResponseStructure<?> delete(CustomerDto customerDto) {
+	public ResponseStructure<?> delete(String mobileNumber) {
 
 		boolean isDeleted =false;
-		if (customerDto != null && customerDto.getMobileNumber() != null) {
-			Customer customer = customerRepository.findByMobileNumber(customerDto.getMobileNumber()).orElseThrow(
-					() -> new ResourceNotFoundException("Customer", "mobileNumber", customerDto.getMobileNumber()));
+		if (mobileNumber != null) {
+			Customer customer = customerRepository.findByMobileNumber(mobileNumber).orElseThrow(
+					() -> new ResourceNotFoundException("Customer", "mobileNumber", mobileNumber));
 		
 			accountRepository.deleteByCustomerId(customer.getCustomerId());
 			customerRepository.deleteById(customer.getCustomerId());
@@ -133,10 +133,10 @@ public class AccountsServiceImpl implements IAccountsService {
 		}
 		if(isDeleted) {
 			return ResponseStructure.<String>builder().statusCode(HttpStatus.OK.value())
-					.message("Customer Deleted Successfully").data(customerDto.getName()).build();
+					.message("Customer Deleted Successfully").data(mobileNumber).build();
 		}
 		return ResponseStructure.<String>builder().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-				.message("Customer Deleted Failed").data(customerDto.getName()).build();
+				.message("Customer Deleted Failed").data(mobileNumber).build();
 
 	}
 }

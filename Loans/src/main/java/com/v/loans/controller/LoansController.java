@@ -4,10 +4,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.v.loans.dto.LoansDto;
 import com.v.loans.responsestructure.ErrorResponse;
 import com.v.loans.responsestructure.ResponseStructure;
 import com.v.loans.service.ILoansService;
@@ -19,7 +22,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Pattern;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.AllArgsConstructor;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 /**
  * @author V
@@ -55,12 +63,31 @@ public class LoansController {
 	            )
 	    }
 	    )
-	    @PostMapping("/create")
+	    @PostMapping("create")
 	    public ResponseEntity<?> createLoan(@RequestParam
 	                                                      @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
 	                                                      String mobileNumber) {
 	        ResponseStructure<?> loan = iLoansService.createLoan(mobileNumber);
 	        return ResponseEntity.status(loan.getStatusCode()).body(loan);
 	    }
+	    
+	    @GetMapping("fetch")
+	    public ResponseEntity<?> fetchLoan(@RequestParam String mobileNumber) {
+	    	ResponseStructure<?> fetchLoan = iLoansService.fetchLoan(mobileNumber);
+	    	return ResponseEntity.status(fetchLoan.getStatusCode()).body(fetchLoan);
+	    }
+	    
+	    @PutMapping("update")
+	    public ResponseEntity<?> updateLoan(@RequestBody LoansDto loansDto) {
+	    	ResponseStructure<?> updateLoan = iLoansService.updateLoan(loansDto);
+	    	return ResponseEntity.status(updateLoan.getStatusCode()).body(updateLoan);
+	    }
+	    
+	    @DeleteMapping("fetch")
+	    public ResponseEntity<?> deleteLoan(@RequestParam String mobileNumber) {
+	    	ResponseStructure<?> deleteLoan = iLoansService.fetchLoan(mobileNumber);
+	    	return ResponseEntity.status(deleteLoan.getStatusCode()).body(deleteLoan);
+	    }
+	    
 
 }

@@ -28,6 +28,6 @@ public class CustomerDto {
 	private String mobileNumber;
 
 	@Schema(description = "Account details of the Customer")
-	private AccountsDto accounts;
+	private AccountsDto accountsDto;
 
 }

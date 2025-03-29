@@ -35,7 +35,7 @@ public interface IAccountsService {
 	 * @param mobileNumber
 	 * @return
 	 */
-	ResponseStructure<?> delete (CustomerDto customerDto);
+	ResponseStructure<?> delete (String mobileNumber);
 
 
 }

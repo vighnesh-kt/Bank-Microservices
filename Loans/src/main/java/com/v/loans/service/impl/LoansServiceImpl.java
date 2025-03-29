@@ -21,65 +21,77 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class LoansServiceImpl implements ILoansService {
-	
-	private  LoansRepository loansRepository;
-	
-	private  LoansMapper loansMapper;
+
+	private LoansRepository loansRepository;
+
+	private LoansMapper loansMapper;
 
 	@Override
 	public ResponseStructure<?> createLoan(String mobileNumber) {
-		loansRepository.findByMobileNumber(mobileNumber).ifPresent(loan->{
+		loansRepository.findByMobileNumber(mobileNumber).ifPresent(loan -> {
 			throw new LoanAlreadyExistsException("Loan already exist");
-			});
+		});
 		Loans loan = createNewLoan(mobileNumber);
 		loansRepository.save(loan);
 		return ResponseStructure.<String>builder().data(loan.getLoanNumber()).message(LoansConstants.MESSAGE_201)
 				.statusCode(HttpStatus.CREATED.value()).build();
 	}
-	
-    /**
-     * @param mobileNumber - Mobile Number of the Customer
-     * @return the new loan details
-     */
-    private Loans createNewLoan(String mobileNumber) {
-        Loans newLoan = new Loans();
-        long randomLoanNumber = 100000000000L + new Random().nextInt(900000000);
-        newLoan.setLoanNumber(Long.toString(randomLoanNumber));
-        newLoan.setMobileNumber(mobileNumber);
-        newLoan.setLoanType(LoansConstants.HOME_LOAN);
-        newLoan.setTotalLoan(LoansConstants.NEW_LOAN_LIMIT);
-        newLoan.setAmountPaid(0);
-        newLoan.setOutstandingAmount(LoansConstants.NEW_LOAN_LIMIT);
-        return newLoan;
-    }
 
+	/**
+	 * @param mobileNumber - Mobile Number of the Customer
+	 * @return the new loan details
+	 */
+	private Loans createNewLoan(String mobileNumber) {
+		Loans newLoan = new Loans();
+		long randomLoanNumber = 100000000000L + new Random().nextInt(900000000);
+		newLoan.setLoanNumber(Long.toString(randomLoanNumber));
+		newLoan.setMobileNumber(mobileNumber);
+		newLoan.setLoanType(LoansConstants.HOME_LOAN);
+		newLoan.setTotalLoan(LoansConstants.NEW_LOAN_LIMIT);
+		newLoan.setAmountPaid(0);
+		newLoan.setOutstandingAmount(LoansConstants.NEW_LOAN_LIMIT);
+		return newLoan;
+	}
 
-    /**
-    *
-    * @param mobileNumber - Input mobile Number
-    * @return Loan Details based on a given mobileNumber
-    */
+	/**
+	 *
+	 * @param mobileNumber - Input mobile Number
+	 * @return Loan Details based on a given mobileNumber
+	 */
 	@Override
 	public ResponseStructure<?> fetchLoan(String mobileNumber) {
 		// TODO Auto-generated method stub
-		  Loans loans = loansRepository.findByMobileNumber(mobileNumber).orElseThrow(
-	               () -> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber)
-	       );
-	       LoansDto dto = loansMapper.toDto(loans);
-	       return ResponseStructure.<LoansDto>builder().data(dto).message(LoansConstants.MESSAGE_200)
-					.statusCode(HttpStatus.OK.value()).build();
+		Loans loans = loansRepository.findByMobileNumber(mobileNumber)
+				.orElseThrow(() -> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber));
+		LoansDto dto = loansMapper.toDto(loans);
+		return ResponseStructure.<LoansDto>builder().data(dto).message(LoansConstants.MESSAGE_200)
+				.statusCode(HttpStatus.OK.value()).build();
 	}
 
 	@Override
 	public ResponseStructure<?> updateLoan(LoansDto loansDto) {
 		// TODO Auto-generated method stub
-		return null;
+		boolean update = false;
+		loansRepository.findByLoanNumber(loansDto.getLoanNumber())
+				.orElseThrow(() -> new ResourceNotFoundException("Loan", "loanNumber", loansDto.getLoanNumber()));
+		Loans save = loansMapper.toEntity(loansDto);
+		loansRepository.save(save);
+		update = true;
+		if (update) {
+			return ResponseStructure.<String>builder().data(loansDto.getLoanNumber())
+					.message(LoansConstants.MESSAGE_200).statusCode(HttpStatus.OK.value()).build();
+		}
+		return ResponseStructure.<String>builder().data(loansDto.getLoanNumber())
+				.message(LoansConstants.MESSAGE_417_UPDATE).statusCode(HttpStatus.EXPECTATION_FAILED.value()).build();
 	}
 
 	@Override
 	public ResponseStructure<?> deleteLoan(String mobileNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		Loans delete = loansRepository.findByMobileNumber(mobileNumber).orElseThrow(()->new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber));
+		loansRepository.delete(delete);
+		return ResponseStructure.<String>builder().data(mobileNumber)
+				.message(LoansConstants.MESSAGE_417_DELETE).statusCode(HttpStatus.OK.value()).build();
 	}
 
 }
