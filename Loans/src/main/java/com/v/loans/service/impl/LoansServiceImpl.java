@@ -72,9 +72,9 @@ public class LoansServiceImpl implements ILoansService {
 	public ResponseStructure<?> updateLoan(LoansDto loansDto) {
 		// TODO Auto-generated method stub
 		boolean update = false;
-		loansRepository.findByLoanNumber(loansDto.getLoanNumber())
+		Loans save = loansRepository.findByLoanNumber(loansDto.getLoanNumber())
 				.orElseThrow(() -> new ResourceNotFoundException("Loan", "loanNumber", loansDto.getLoanNumber()));
-		Loans save = loansMapper.toEntity(loansDto);
+		loansMapper.updateEntity(loansDto, save);
 		loansRepository.save(save);
 		update = true;
 		if (update) {
@@ -91,7 +91,7 @@ public class LoansServiceImpl implements ILoansService {
 		Loans delete = loansRepository.findByMobileNumber(mobileNumber).orElseThrow(()->new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber));
 		loansRepository.delete(delete);
 		return ResponseStructure.<String>builder().data(mobileNumber)
-				.message(LoansConstants.MESSAGE_417_DELETE).statusCode(HttpStatus.OK.value()).build();
+				.message(LoansConstants.MESSAGE_200).statusCode(HttpStatus.OK.value()).build();
 	}
 
 }

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Pattern;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.AllArgsConstructor;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -84,7 +84,7 @@ public class LoansController {
 	    
 	    @DeleteMapping("delete")
 	    public ResponseEntity<?> deleteLoan(@RequestParam String mobileNumber) {
-	    	ResponseStructure<?> deleteLoan = iLoansService.fetchLoan(mobileNumber);
+	    	ResponseStructure<?> deleteLoan = iLoansService.deleteLoan(mobileNumber);
 	    	return ResponseEntity.status(deleteLoan.getStatusCode()).body(deleteLoan);
 	    }
 	    

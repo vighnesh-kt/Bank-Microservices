@@ -6,14 +6,31 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password: ''
-#h2:console enable login h2 console from browser to show db
   h2:
     console:
       enabled: true
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-#ddl auto update means create tables as per req when server start so no need to manually create table
     hibernate:
       ddl-auto: update
-#show sql truue prin all qery on console
     show-sql: true
+  config:
+    import:
+      - "application_qa.yml"
+      - "application_prod.yml"
+  profiles:
+    active: prod
+
+
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to Bank accounts related local APIs "
+  contactDetails:
+    name: "John Doe - Developer"
+    email: "john@eazybank.com"
+  onCallSupport:
+    - (555) 555-1234
+    - (555) 523-1345

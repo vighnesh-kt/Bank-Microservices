@@ -22,7 +22,7 @@ import com.v.cards.dto.ResponseDto;
 import com.v.cards.service.ICardsService;
 
 /**
- * @author Eazy Bytes
+ * @author V
  */
 
 @Tag(
