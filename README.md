@@ -28,5 +28,5 @@ The project follows **microservices architecture**, where each service is **inde
 - 📌 **Readable API Responses** – Implements a **custom Response Structure** for consistency.  
 - 📌 **Error DTO** – Provides a structured **error response** for API failures.  
 - 📌 **Object Mapping with MapStruct** – Efficient **DTO to Entity conversion**.  
-- 📌 **Builder Pattern Implementation** – Improves **object creation** and maintains clean code.  
-- 📌 **Builder Pattern Implementation** – Improves **API Documentation** using Open API
+- 📌 **Implemented Open API** – Improves **API Documentation** using Open API
+- 📌 **Used Docker** – For **Containerization** of each microservices
