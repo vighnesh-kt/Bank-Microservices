@@ -11,7 +11,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.v</groupId>
-	<artifactId>Java8</artifactId>
+	<artifactId>Accounts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Accounts</name>
 	<description>Microservice for accounts</description>
@@ -107,7 +107,14 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+			   <!-- ✅ This plugin makes the JAR executable -->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+
 		</plugins>
+		<finalName>Accounts</finalName>
 	</build>
 
 </project>

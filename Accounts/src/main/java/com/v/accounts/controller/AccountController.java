@@ -56,7 +56,7 @@ public class AccountController {
 	@Autowired
     private AccountsContactInfoDto accountsContactInfoDto;
 
-	@Value("${spring.profiles.active}")
+	@Value("${spring.profiles.active:default}") // Default if no profile is set
     private String activeProfile;
     
     @GetMapping("/profile")
