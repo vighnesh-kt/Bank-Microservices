@@ -1,9 +1,9 @@
 # 🏦 Bank Microservices
 
-## 📖 Overview
+## 📚 Overview
 This project is a **banking system** built using **Spring Boot microservices architecture**. It follows **best practices** for API design, error handling, and scalability.
 
-## 🏗️ Architecture
+## 🏷️ Architecture
 The project follows **microservices architecture**, where each service is **independent** and communicates via **REST APIs**.
 
 ## 🛠️ Tech Stack
@@ -12,21 +12,22 @@ The project follows **microservices architecture**, where each service is **inde
 - **Database**: PostgreSQL/MySQL
 - **Mapping**: MapStruct
 - **Deployment**: Render
+- **Containerization**: Docker, Docker Compose
 - **Exception Handling**: Global Exception Handler
 - **Design Pattern**: Builder Pattern
 - **API Response**: Custom Response Structure
-- **API Documentation**:  Open API
+- **API Documentation**: Open API
 
 ## ⚙️ Microservices Implemented
-1. **Account and Customer Service** – Manages bank accounts  and handles customer onboarding  
-2. **Loans Service** – Manages Loans
-3. **Cards Service** – Manages Cards
-
+1. **Account and Customer Service** – Manages bank accounts and handles customer onboarding  
+2. **Loans Service** – Manages Loans  
+3. **Cards Service** – Manages Cards  
 
 ## ✅ Key Features
 - 📌 **Robust Exception Handling** – Uses a **Global Exception Handler** for standardized error responses.  
 - 📌 **Readable API Responses** – Implements a **custom Response Structure** for consistency.  
 - 📌 **Error DTO** – Provides a structured **error response** for API failures.  
 - 📌 **Object Mapping with MapStruct** – Efficient **DTO to Entity conversion**.  
-- 📌 **Implemented Open API** – Improves **API Documentation** using Open API
-- 📌 **Used Docker** – For **Containerization** of each microservices
+- 📌 **Implemented Open API** – Improves **API Documentation** using Open API.  
+- 📌 **Used Docker** – For **Containerization** of each microservice.  
+- 📌 **Implemented Docker Compose** – For easy management of multi-container applications.  
