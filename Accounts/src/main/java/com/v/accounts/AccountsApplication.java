@@ -18,8 +18,8 @@ import io.swagger.v3.oas.annotations.info.License;
 @SpringBootApplication
 @EnableConfigurationProperties(AccountsContactInfoDto.class)
 /*@ComponentScans({ @ComponentScan("com.eazybytes.accounts.controller") })
-@EnableJpaRepositories("com.eazybytes.accounts.repository")
-@EntityScan("com.eazybytes.accounts.model")*/
+@EnableJpaRepositories("com.v.accounts.accounts.repository")
+@EntityScan("com.v.accounts.model")*/
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 @OpenAPIDefinition(
 		info = @Info(
