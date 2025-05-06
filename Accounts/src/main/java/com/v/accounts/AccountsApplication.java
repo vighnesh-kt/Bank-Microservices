@@ -38,7 +38,7 @@ import io.swagger.v3.oas.annotations.info.License;
 		),
 		externalDocs = @ExternalDocumentation(
 				description =  "Bank Accounts microservice REST API Documentation",
-				url = "https://www..com/swagger-ui.html"
+				url = "https://www.com/swagger-ui.html"
 		)
 )
 public class AccountsApplication {
