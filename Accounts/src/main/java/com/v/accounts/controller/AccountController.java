@@ -225,7 +225,7 @@ public class AccountController {
 	    public ResponseEntity<String> getJavaVersion() {
 	        return ResponseEntity
 	                .status(HttpStatus.OK)
-	                .body(System.getenv("java -version"));
+	                .body(environment.getProperty("accounts.contactDetails.name"));
 	    }
 
 	    @Operation(
