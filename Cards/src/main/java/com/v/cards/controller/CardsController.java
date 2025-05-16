@@ -54,7 +54,7 @@ public class CardsController {
     private Environment environment;
     
 	@Value("${build.version}")
-	private String buildVersion;
+    private String buildVersion;
 
     @Operation(
             summary = "Create Card REST API",
