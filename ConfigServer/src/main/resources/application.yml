@@ -7,10 +7,10 @@ spring:
           #search-locations: "file:///Users/BaBa/workspace-spring-tool-suite-4-4.26.0.RELEASE/Microservices/Classpath config" #file system
         git:
 #used for public repo        
-          uri: ${GIT_URL}
+          uri: https://github.com/vighnesh-kt/Bank-Microservices-Config.git
           #uri: git@github.com:vighnesh-kt/Bank-Microservices-Config.git
           username: vighnesh-kt
-          password: ${GIT_PASS}
+          password: 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
           default-label: main
           timeout: 5
           clone-on-start: true
