@@ -7,14 +7,16 @@ spring:
           #search-locations: "file:///Users/BaBa/workspace-spring-tool-suite-4-4.26.0.RELEASE/Microservices/Classpath config" #file system
         git:
 #used for public repo        
-#          uri: https://github.com/vighnesh-kt/Bank-Microservices-Config.git
-          uri: git@github.com:vighnesh-kt/Bank-Microservices-Config.git
+          uri: https://github.com/vighnesh-kt/Bank-Microservices-Config.git
+          #uri: git@github.com:vighnesh-kt/Bank-Microservices-Config.git
+          username: vighnesh-kt
+          password: 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
           default-label: main
           timeout: 5
           clone-on-start: true
           force-pull: true
-          ssh:
-            private-key: classpath:/keys/id_rsa   # or file:/home/user/.ssh/id_rsa if not packaged
+          #ssh:
+            #private-key: classpath:/keys/id_rsa   # or file:/home/user/.ssh/id_rsa if not packaged
          
   profiles:
     #active: native
