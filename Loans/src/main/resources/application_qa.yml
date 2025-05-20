@@ -1,0 +1,19 @@
+#commenting as configuration is done using spring cloud config
+
+
+# spring:
+#   config:
+#     activate:
+#       on-profile: "qa"
+
+# build:
+#   version: "2.0"
+
+# loans:
+#   message: "Welcome to Bank loans related QA APIs "
+#   contactDetails:
+#     name: "Smitha Ray - QA Lead"
+#     email: "smitha@v.com"
+#   onCallSupport:
+#     - "(666) 265-3765"
+#     - "(666) 734-8371"
