@@ -10,7 +10,7 @@ spring:
           uri: https://github.com/vighnesh-kt/Bank-Microservices-Config.git
           #uri: git@github.com:vighnesh-kt/Bank-Microservices-Config.git
           username: vighnesh-kt
-          password: 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
+          password: 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
           default-label: main
           timeout: 5
           clone-on-start: true
