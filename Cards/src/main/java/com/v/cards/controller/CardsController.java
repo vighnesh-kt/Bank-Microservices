@@ -46,16 +46,19 @@ public class CardsController {
 	}
 
 	private ICardsService iCardsService;
+	
+    
+//	@Value("${build.version}")
+//    private String buildVersion;
     
     @Autowired
     private CardsContactInfoDto cardsContactInfoDto;
     
     @Autowired
     private Environment environment;
-    
-	@Value("${build.version}")
-    private String buildVersion;
 
+
+	
     @Operation(
             summary = "Create Card REST API",
             description = "REST API to create new Card inside Bank"
@@ -181,30 +184,30 @@ public class CardsController {
         }
     }
     
-	 @Operation(
-	            summary = "Get Build information",
-	            description = "Get Build information that is deployed into accounts microservice"
-	    )
-	    @ApiResponses({
-	            @ApiResponse(
-	                    responseCode = "200",
-	                    description = "HTTP Status OK"
-	            ),
-	            @ApiResponse(
-	                    responseCode = "500",
-	                    description = "HTTP Status Internal Server Error",
-	                    content = @Content(
-	                            schema = @Schema(implementation = ErrorResponseDto.class)
-	                    )
-	            )
-	    }
-	    )
-	    @GetMapping("/build-info")
-	    public ResponseEntity<String> getBuildInfo() {
-	        return ResponseEntity
-	                    .status(HttpStatus.OK)
-	                    .body(buildVersion);
-	    }
+//	 @Operation(
+//	            summary = "Get Build information",
+//	            description = "Get Build information that is deployed into accounts microservice"
+//	    )
+//	    @ApiResponses({
+//	            @ApiResponse(
+//	                    responseCode = "200",
+//	                    description = "HTTP Status OK"
+//	            ),
+//	            @ApiResponse(
+//	                    responseCode = "500",
+//	                    description = "HTTP Status Internal Server Error",
+//	                    content = @Content(
+//	                            schema = @Schema(implementation = ErrorResponseDto.class)
+//	                    )
+//	            )
+//	    }
+//	    )
+//	    @GetMapping("/build-info")
+//	    public ResponseEntity<String> getBuildInfo() {
+//	        return ResponseEntity
+//	                    .status(HttpStatus.OK)
+//	                    .body(buildVersion);
+//	    }
 
 	    @Operation(
 	            summary = "Get Java version",
