@@ -44,7 +44,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 )
 public class AccountController {
 	
-	@Autowired
+	
+	public AccountController(IAccountsService accountsService) {
+		super();
+		this.accountsService = accountsService;
+	}
+
 	private IAccountsService accountsService;
 	
 	@Value("${build.version}")
