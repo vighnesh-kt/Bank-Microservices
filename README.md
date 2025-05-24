@@ -26,5 +26,5 @@ The project follows **microservices architecture**, where each service is **inde
 - 📌 **Readable API Responses** – Implements a **custom Response Structure** for consistency.  
 - 📌 **Implemented Open API** – Improves **API Documentation** using Open API. ans Swagger UI.
 - 📌 **Used Docker** – For **Containerization** of each microservice and Docker Compose for multi-container applications.  
-- 📌 **Implemented SpringBoot Profiles using Spring Cloud ConfigServer*  – For external config management using github implementing encrypted configuration and changing it during runtime.
+- 📌 *Implemented SpringBoot Profiles using Spring Cloud ConfigServer*  – For external config management using github implementing encrypted configuration and changing it during runtime.
 
