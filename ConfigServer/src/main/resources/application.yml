@@ -9,8 +9,8 @@ spring:
 #used for public repo        
           uri: https://github.com/vighnesh-kt/Bank-Microservices-Config.git
           #uri: git@github.com:vighnesh-kt/Bank-Microservices-Config.git
-          username: vighnesh-kt
-          password: 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
+          username: ${SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME}
+          password: ${SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD}
           default-label: main
           timeout: 5
           clone-on-start: true
